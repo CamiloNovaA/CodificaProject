@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "9e45d36e-fce5-4b29-8cd9-03fd421ad47d": {
+      "ProjectGuid": "9e45d36e-fce5-4b29-8cd9-03fd421ad47d",
+      "DisplayName": "CodificaWebServices",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Archivos varios",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}
