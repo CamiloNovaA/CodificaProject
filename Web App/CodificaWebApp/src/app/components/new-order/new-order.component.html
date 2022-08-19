@@ -1,0 +1,136 @@
+<form [formGroup]="createOrderForm" (ngSubmit)="createOrder()">
+    <mat-card>
+        <mat-card-title>Order</mat-card-title>
+        
+        <mat-grid-list cols="6" rowHeight="90px">
+            <!--1-->
+            <mat-grid-tile [colspan]="3" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control input-control-right">
+                    <mat-label>Employee</mat-label>
+                    <mat-select formControlName="employee">
+                    <mat-option *ngFor="let employee of employees" [value]="employee">
+                        {{employee.fullname}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="1">                
+                <mat-form-field appearance="standard" class="input-control input-control-left">
+                    <mat-label>Shipper</mat-label>
+                    <mat-select formControlName="shipper">
+                    <mat-option *ngFor="let ship of shippers" [value]="ship">
+                        {{ship.companyname}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <!--2-->
+            <mat-grid-tile [colspan]="6" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control">
+                    <mat-label>Ship Name</mat-label>
+                    <input matInput formControlName="shipName">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <!--3-->
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control input-control-right">
+                    <mat-label>Ship Address</mat-label>
+                    <input matInput formControlName="shipAddress">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control input-control-center">
+                    <mat-label>Ship City</mat-label>
+                    <input matInput formControlName="shipCity">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control input-control-left">
+                    <mat-label>Ship Country</mat-label>
+                    <input matInput formControlName="shipCountry">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <!--4-->
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control input-control-right">
+                    <mat-label>Order Date</mat-label>
+                    <input matInput [matDatepicker]="OrderDate" formControlName="orderDate">
+                    <mat-datepicker-toggle matPrefix [for]="OrderDate"></mat-datepicker-toggle>
+                    <mat-datepicker #OrderDate></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">                
+                <mat-form-field appearance="standard" class="input-control input-control-center">
+                    <mat-label>Required Date</mat-label>
+                    <input matInput [matDatepicker]="RequiredDate" formControlName="requiredDate">
+                    <mat-datepicker-toggle matPrefix [for]="RequiredDate"></mat-datepicker-toggle>
+                    <mat-datepicker #RequiredDate></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">                
+                <mat-form-field appearance="standard" class="input-control input-control-left">
+                    <mat-label>Shipped Date</mat-label>
+                    <input matInput [matDatepicker]="ShippedDate" formControlName="shippedDate">
+                    <mat-datepicker-toggle matPrefix [for]="ShippedDate"></mat-datepicker-toggle>
+                    <mat-datepicker #ShippedDate></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <!--5-->
+            <mat-grid-tile [colspan]="6" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control">
+                    <mat-label>Freight</mat-label>
+                    <input matInput formControlName="freight">
+                    <mat-icon matPrefix>attach_money</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        
+        <hr>
+
+        <mat-card-title>Order Details</mat-card-title>
+        
+        <mat-grid-list cols="6" rowHeight="100px">
+            <!--1-->
+            <mat-grid-tile [colspan]="6" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control">
+                    <mat-label>Product</mat-label>
+                    <mat-select formControlName="product">
+                        <mat-option *ngFor="let product of products" [value]="product">
+                            {{product.productname}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <!--2-->
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control input-control-right">
+                    <mat-label>Unit Price</mat-label>
+                    <input matInput formControlName="unitPrice">
+                    <mat-icon matPrefix>attach_money</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control input-control-center">
+                    <mat-label>Quantity</mat-label>
+                    <input type="number" matInput formControlName="quantity">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field appearance="standard" class="input-control input-control-left">
+                    <mat-label>Discount</mat-label>
+                    <input type="number" matInput placeholder="Insert 0 or 1" formControlName="discount">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-card-actions align="end">
+            <button mat-button (click)="closeModal()" color="success">CLOSE</button>
+            <button type="submit" (click)="createOrder()" [disabled]="createOrderForm.invalid" mat-button color="success">SAVE</button>
+          </mat-card-actions>
+    </mat-card>
+</form>

@@ -1,0 +1,55 @@
+<div mat-dialog-content>
+    <div class="mat-elevation-z8 div-container-table">    
+        <table mat-table matSort [dataSource]="dataSource" (matSortChange)="tableSortChange($event)">
+            <ng-container matColumnDef="OrderID">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Order"> Order ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.orderid}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="RequiredDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Required Date"> Required Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.requireddate | date:'M/d/yyyy, hh:mm:ss a'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="ShippedOrder">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Shipped Order"> ShippedOrder </th>
+                <td mat-cell *matCellDef="let element"> {{element.shippeddate | date:'M/d/yyyy, hh:mm:ss a'}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="ShipName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Ship Name"> Ship Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.shipname}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="ShipAddress">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Ship Address"> Ship Address </th>
+                <td mat-cell *matCellDef="let element"> {{element.shipaddress}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="ShipCity">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Ship City"> Ship City </th>
+                <td mat-cell *matCellDef="let element"> {{element.shipcity}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="title">
+                <th class="tbl-title" mat-header *matHeaderCellDef [attr.colspan]="6"> 
+                    <h1>{{ customerName }}</h1>
+                </th>
+            </ng-container>
+            
+            <tr class="tbl-header" mat-header-row *matHeaderRowDef="['title']"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[10, 20, 50]" 
+            showFirstLastButtons aria-label="Seleccione la pagina que desee">
+        </mat-paginator>
+    
+        <mat-toolbar>
+            <mat-toolbar-row class="toolbar-row">                
+                <button mat-button (click)="closeModal()" color="warn">Close</button>
+            </mat-toolbar-row>
+          </mat-toolbar>
+    </div>
+</div>

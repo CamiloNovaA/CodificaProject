@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="mat-elevation-z8 div-container-table">    
+    <table mat-table matSort [dataSource]="dataSource" (matSortChange)="tableSortChange($event)">
+        <ng-container matColumnDef="customerName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Customer Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="lastOrderDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Date"> Last Order Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastOrderDate | date:'M/d/yyyy'}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="nextPredictedOrder">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Order"> Next Predicted Order </th>
+          <td mat-cell *matCellDef="let element"> {{element.nextPredictedOrder | date:'M/d/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ViewOrders">
+            <th mat-header-cell  *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" >
+                <a class="btn-table btn-vieworders" (click)="viewOrders(element)" mat-button> VIEW ORDERS </a>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="NewOrders">
+            <th mat-header-cell  *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" >
+                <a class="btn-table btn-neworders" (click)="createOrder(element)" mat-button>NEW ORDERS</a>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+            <th mat-header *matHeaderCellDef [attr.colspan]="2" align="left"> 
+                <h1>Customers</h1>
+            </th>
+        </ng-container>
+        
+        <ng-container matColumnDef="filter">
+            <th mat-header *matHeaderCellDef [attr.colspan]="3">
+                <mat-form-field class="filter-table" appearance="standard">
+                    <mat-label>Customer Name</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Example: Customer XXXX">
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </th>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="['title', 'filter']"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" 
+        showFirstLastButtons aria-label="Seleccione la pagina que desee">
+    </mat-paginator>
+</div>
