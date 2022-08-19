@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "d8369de1-d016-4670-9214-d4be3caf50a3",
+		"name": "CodificaCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetSalesDatePrediction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7040/api/Customers/GetSalesDatePrediction",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7040",
+					"path": [
+						"api",
+						"Customers",
+						"GetSalesDatePrediction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetClientOrdersById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7040/api/Orders/GetOrdersByClient/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7040",
+					"path": [
+						"api",
+						"Orders",
+						"GetOrdersByClient",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEmployees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7040/api/Employees/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7040",
+					"path": [
+						"api",
+						"Employees",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetShippers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7040/api/Shippers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7040",
+					"path": [
+						"api",
+						"Shippers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewOrder",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.globals.set(\"today\", moment().format(\"MM/DD/YYYY\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"custid\": 1,\r\n    \"employeeId\": 1,\r\n    \"shipperId\": 1,\r\n    \"shipName\": \"shipName\",\r\n    \"shipAddres\": \"shipAddres\",\r\n    \"shipCity\": \"shipCity\",\r\n    \"shipCountry\": \"shipCountry\",\r\n    \"orderDate\": \"2018-03-29\",\r\n    \"requiredDate\": \"2018-03-29\",\r\n    \"shippedDate\": \"2018-03-29\",\r\n    \"freight\": \"1.52\",\r\n    \"productId\": 1,\r\n    \"unitPrice\": \"15.000\",\r\n    \"quantity\": 1,\r\n    \"discount\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7040/api/Orders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7040",
+					"path": [
+						"api",
+						"Orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7040/api/Products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7040",
+					"path": [
+						"api",
+						"Products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
